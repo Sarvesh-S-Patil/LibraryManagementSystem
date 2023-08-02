@@ -24,7 +24,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name="card")
-public class Card  {
+public class Card implements Serializable {
 //	1. Id 2. Status 3. Email 4. ValidUpto 5. CreatedOn 6. UpdatedOn
 	@Id
 	@Column(name="cardId")
@@ -45,11 +45,11 @@ public class Card  {
 	@Column(name="updatedOn")
 	private Date updatedOn;
 	
-	@OneToOne(mappedBy = "studentCard",cascade = CascadeType.ALL)
-	@JsonIgnore
+	@OneToOne(mappedBy = "studentCard")
+	@JsonBackReference
 	private Student student;
 	
-	@OneToMany(mappedBy = "transactionCard",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "transactionCard")
 	@JsonManagedReference
 	private List<Transaction> transaction;
 	
@@ -63,8 +63,7 @@ public class Card  {
 	
 
 
-	public Card(int cardId, boolean status, String email, Date validUpto, Date createdOn, Date updatedOn,
-			Student student, List<Transaction> transaction) {
+	public Card(int cardId, boolean status, String email, Date validUpto, Date createdOn, Date updatedOn) {
 		super();
 		this.cardId = cardId;
 		this.status = status;
@@ -72,11 +71,15 @@ public class Card  {
 		this.validUpto = validUpto;
 		this.createdOn = createdOn;
 		this.updatedOn = updatedOn;
+	}
+	
+	public void addStudent(Student student) {
 		this.student = student;
-		this.transaction = transaction;
 	}
 
-
+	public void removeStudent(int studentId) {
+		this.student = null;
+	}
 
 
 

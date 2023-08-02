@@ -2,15 +2,15 @@ package com.Sarvesh.library.DTO.Student;
 
 import com.Sarvesh.library.Entity.Card;
 
-public class UpdateCardRequest {
+public class UpdateStudentCardRequest {
 	
 	private int studentId;
 	private Card card;
-	public UpdateCardRequest() {
+	public UpdateStudentCardRequest() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public UpdateCardRequest(int studentId, Card card) {
+	public UpdateStudentCardRequest(int studentId, Card card) {
 		super();
 		this.studentId = studentId;
 		this.card = card;

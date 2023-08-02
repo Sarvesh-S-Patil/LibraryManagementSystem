@@ -6,12 +6,14 @@ import java.sql.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
@@ -23,7 +25,7 @@ import lombok.ToString;
 
 @Entity
 @Table(name="student")
-public class Student {
+public class Student implements Serializable{
 //	1. Id 2. Age 3. Name 4. Country 5. Email 6. Phone Number 7. CreatedOn 8. UpdatedOn 9. CardId
 	@Id
 	@Column(name="studentId")
@@ -49,8 +51,9 @@ public class Student {
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date updatesOn;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JsonManagedReference
+	@JoinColumn(name = "card_id")
 	private Card studentCard;
 
 	public Student() {
@@ -61,7 +64,7 @@ public class Student {
 	
 
 	public Student(int studentId, int age, String country, String email, int phoneNumber, Date createdOn,
-			Date updatesOn, Card card) {
+			Date updatesOn) {
 		super();
 		this.studentId = studentId;
 		this.age = age;
@@ -70,7 +73,22 @@ public class Student {
 		this.phoneNumber = phoneNumber;
 		this.createdOn = createdOn;
 		this.updatesOn = updatesOn;
-		this.studentCard = card;
+	}
+	
+
+
+
+	public Student(int studentId, int age, String country, String email, int phoneNumber, Date createdOn,
+			Date updatesOn, Card studentCard) {
+		super();
+		this.studentId = studentId;
+		this.age = age;
+		Country = country;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
+		this.createdOn = createdOn;
+		this.updatesOn = updatesOn;
+		this.studentCard = studentCard;
 	}
 
 

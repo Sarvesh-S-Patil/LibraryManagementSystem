@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.Sarvesh.library.DTO.Student.UpdateCardRequest;
+import com.Sarvesh.library.DTO.Student.UpdateStudentCardRequest;
 import com.Sarvesh.library.Entity.Card;
 import com.Sarvesh.library.Entity.Student;
 import com.Sarvesh.library.Repository.CardRepo;
@@ -20,7 +20,7 @@ public class StudentService {
 	@Autowired
 	CardRepo cardRepo;
 	
-	public Student addCard(UpdateCardRequest updateCardRequest) throws Exception {
+	public Student addCard(UpdateStudentCardRequest updateCardRequest) throws Exception {
         int studentId = updateCardRequest.getStudentId();
         Optional<Student> optionalStudent = studentRepo.findById(studentId);
 

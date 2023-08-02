@@ -17,7 +17,7 @@ import lombok.ToString;
 @ToString
 @Entity
 @Table(name="Author")
-public class Author implements Serializable{
+public class Author implements Serializable {
 	// 1. Id 2. Name 3. Email 4. Age 5. Country
 	@Id
 	@Column(name="authorId")
@@ -32,7 +32,7 @@ public class Author implements Serializable{
 	private String country;
 	@OneToOne
 	@PrimaryKeyJoinColumn
-	@JsonIgnore
+	@JsonBackReference
 	private Book book;
 	
 	public Author() {

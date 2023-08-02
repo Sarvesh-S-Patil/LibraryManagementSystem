@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -18,7 +19,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="transaction")
-public class Transaction implements Serializable {
+public class Transaction  implements Serializable {
 //	1. Id 2. CardID 3. BookID 4. TransactionDate 5. BookDueDate 6. IsIssued 
 //	7. IsReturned 8. FineAmount 9. Status 10. CreatedOn 11. UpdatedOn
 	
@@ -51,11 +52,11 @@ public class Transaction implements Serializable {
 	private Date updatedOn;
 	
 	@ManyToOne
-	@JsonIgnore
+	@JsonBackReference
 	private Book transactionBook;
 	
-	@ManyToOne
-	@JsonIgnore
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JsonBackReference
 	private Card transactionCard;
 	
 
@@ -66,8 +67,7 @@ public class Transaction implements Serializable {
 
 
 	public Transaction(int transactionId, Date transactionDate, Date bookDueDate, boolean isIssued, boolean isReturned,
-			int fineAmount, boolean status, Date createdOn, Date updatedOn, Book transactionBook,
-			Card transactionCard) {
+			int fineAmount, boolean status, Date createdOn, Date updatedOn) {
 		super();
 		this.transactionId = transactionId;
 		this.transactionDate = transactionDate;
@@ -78,8 +78,7 @@ public class Transaction implements Serializable {
 		this.status = status;
 		this.createdOn = createdOn;
 		this.updatedOn = updatedOn;
-		this.transactionBook = transactionBook;
-		this.transactionCard = transactionCard;
+
 	}
 
 

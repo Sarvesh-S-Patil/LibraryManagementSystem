@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.Sarvesh.library.DTO.Student.UpdateCardRequest;
+import com.Sarvesh.library.DTO.Student.UpdateStudentCardRequest;
 import com.Sarvesh.library.Entity.Card;
 import com.Sarvesh.library.Entity.Student;
 import com.Sarvesh.library.Repository.StudentRepo;
@@ -56,7 +56,7 @@ public class StudentController {
 	}
 	
 	@PostMapping("/updateCard")
-	public Student addCard(@RequestBody UpdateCardRequest updateCardDTO) {
+	public Student addCard(@RequestBody UpdateStudentCardRequest updateCardDTO) {
 		try {
 			return service.addCard(updateCardDTO);
 		} catch (Exception e) {
