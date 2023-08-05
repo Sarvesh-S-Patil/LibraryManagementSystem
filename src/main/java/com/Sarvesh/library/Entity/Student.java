@@ -52,7 +52,6 @@ public class Student implements Serializable{
 	private Date updatesOn;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JsonManagedReference
 	@JoinColumn(name = "card_id")
 	private Card studentCard;
 
@@ -60,21 +59,6 @@ public class Student implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	
-
-	public Student(int studentId, int age, String country, String email, int phoneNumber, Date createdOn,
-			Date updatesOn) {
-		super();
-		this.studentId = studentId;
-		this.age = age;
-		this.Country = country;
-		this.email = email;
-		this.phoneNumber = phoneNumber;
-		this.createdOn = createdOn;
-		this.updatesOn = updatesOn;
-	}
-	
 
 
 

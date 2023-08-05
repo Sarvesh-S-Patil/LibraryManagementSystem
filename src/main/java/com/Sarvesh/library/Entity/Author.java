@@ -32,7 +32,6 @@ public class Author implements Serializable {
 	private String country;
 	@OneToOne
 	@PrimaryKeyJoinColumn
-	@JsonBackReference
 	private Book book;
 	
 	public Author() {

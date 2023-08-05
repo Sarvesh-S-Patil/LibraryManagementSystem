@@ -1,25 +1,21 @@
 package com.Sarvesh.library.Entity;
 
 import java.io.Serializable;
+
 import java.sql.Date;
 
 import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+
+
 
 
 @Entity
@@ -45,12 +41,11 @@ public class Card implements Serializable {
 	@Column(name="updatedOn")
 	private Date updatedOn;
 	
-	@OneToOne(mappedBy = "studentCard")
-	@JsonBackReference
+	@OneToOne(mappedBy = "studentCard",cascade = CascadeType.ALL)
+	@JsonIgnore
 	private Student student;
 	
 	@OneToMany(mappedBy = "transactionCard")
-	@JsonManagedReference
 	private List<Transaction> transaction;
 	
 
@@ -73,13 +68,20 @@ public class Card implements Serializable {
 		this.updatedOn = updatedOn;
 	}
 	
-	public void addStudent(Student student) {
+	
+	public Card(int cardId, boolean status, String email, Date validUpto, Date createdOn, Date updatedOn,
+			Student student, List<Transaction> transaction) {
+		super();
+		this.cardId = cardId;
+		this.status = status;
+		this.email = email;
+		this.validUpto = validUpto;
+		this.createdOn = createdOn;
+		this.updatedOn = updatedOn;
 		this.student = student;
+		this.transaction = transaction;
 	}
 
-	public void removeStudent(int studentId) {
-		this.student = null;
-	}
 
 
 

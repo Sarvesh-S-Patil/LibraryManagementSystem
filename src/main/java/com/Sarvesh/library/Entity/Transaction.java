@@ -51,12 +51,12 @@ public class Transaction  implements Serializable {
 	@Column(name="updatedOn")
 	private Date updatedOn;
 	
-	@ManyToOne
-	@JsonBackReference
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JsonIgnore
 	private Book transactionBook;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JsonBackReference
+	@JsonIgnore
 	private Card transactionCard;
 	
 

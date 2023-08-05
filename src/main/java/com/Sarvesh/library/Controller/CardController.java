@@ -31,7 +31,7 @@ public class CardController {
 		return cardRepo.save(card);
 	}
 	
-	@GetMapping("getCard")
+	@GetMapping("/getCard")
 	public Card getCard(@RequestParam int cardId) {
 		Optional<Card> optionalCard = cardRepo.findById(cardId);
 		if(optionalCard.isPresent()) {

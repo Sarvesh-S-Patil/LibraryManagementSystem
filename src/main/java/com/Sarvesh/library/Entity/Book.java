@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
@@ -39,11 +40,11 @@ public class Book implements Serializable {
 	Date publishedDate;
 	
 	@OneToOne(mappedBy = "book",cascade = CascadeType.ALL)
-	@JsonManagedReference
+	@JsonIgnore
 	private Author author;
 	
-	@OneToMany(mappedBy = "transactionBook",cascade = CascadeType.ALL)
-	@JsonManagedReference
+	@OneToMany(mappedBy = "transactionBook")
+
 	private List<Transaction> transaction;
 	
 	public Book() {
