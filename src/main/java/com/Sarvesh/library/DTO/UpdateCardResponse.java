@@ -1,4 +1,4 @@
-package com.Sarvesh.library.DTO.Card;
+package com.Sarvesh.library.DTO;
 
 import java.sql.Date;
 

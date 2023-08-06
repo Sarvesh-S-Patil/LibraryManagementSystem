@@ -51,7 +51,7 @@ public class Student implements Serializable{
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date updatesOn;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name = "card_id")
 	private Card studentCard;
 

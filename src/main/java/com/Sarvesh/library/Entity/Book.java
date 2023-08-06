@@ -11,6 +11,7 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -38,13 +39,12 @@ public class Book implements Serializable {
 	String isbnNumber;
 	@Column(name="Published Date")
 	Date publishedDate;
-	
 	@OneToOne(mappedBy = "book",cascade = CascadeType.ALL)
 	@JsonIgnore
+	@JoinColumn(name = "authorID")
 	private Author author;
 	
 	@OneToMany(mappedBy = "transactionBook")
-
 	private List<Transaction> transaction;
 	
 	public Book() {

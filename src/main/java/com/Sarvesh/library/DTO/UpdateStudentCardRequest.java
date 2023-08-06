@@ -1,4 +1,4 @@
-package com.Sarvesh.library.DTO.Student;
+package com.Sarvesh.library.DTO;
 
 import com.Sarvesh.library.Entity.Card;
 
