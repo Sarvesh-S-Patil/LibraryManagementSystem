@@ -29,9 +29,14 @@ public class TransactionController {
 	}
 	
 
-	@PostMapping("/add")
+	@PostMapping("/issue")
 	public Optional<Transaction> issueBook(@RequestBody AddTransactionRequest transactionRequest) throws InvalidException{
 		return service.issueBook(transactionRequest.getTransaction(), transactionRequest.getBookId(), transactionRequest.getCardId());
+	}
+	
+	@PostMapping("/return")
+	public Optional<Transaction> returnBook(@RequestBody AddTransactionRequest transactionRequest)throws InvalidException{
+		return service.returnBook(transactionRequest.getTransaction(), transactionRequest.getBookId(), transactionRequest.getCardId());
 	}
 
 }
